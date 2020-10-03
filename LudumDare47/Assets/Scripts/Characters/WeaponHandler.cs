@@ -16,6 +16,11 @@ public class WeaponHandler : MonoBehaviour
     public bool IsFacingRight { get; private set; }
     public bool ShouldAim { get; set; }
 
+    public Weapon GetWeapon()
+    {
+        return weapon;
+    }
+
     public void Shoot()
     {
         weapon.Shoot(shootOrigin, transform.rotation);

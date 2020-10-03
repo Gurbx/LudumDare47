@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class LevelHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static LevelHandler Instance;
+
+    public delegate void LevelHandlerEventHandler();
+
+    public event LevelHandlerEventHandler LoopIncremented;
+
+    public int LoopNr { get; private set; }
+
+    private void Awake()
     {
-        
+        if (Instance != null)
+        {
+            GameObject.Destroy(this);
+            return;
+        }
+
+        Instance = this;
+        LoopNr = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncrementLoop()
     {
-        
+        LoopNr++;
+        if (LoopIncremented != null)
+        {
+            LoopIncremented.Invoke();
+        }
     }
 }

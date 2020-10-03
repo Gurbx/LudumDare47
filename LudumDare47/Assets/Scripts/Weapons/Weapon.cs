@@ -16,8 +16,20 @@ public class Weapon : MonoBehaviour
 
     public Sprite WeaponSprite { get; private set; }
 
+    public void SetWeapon(WeaponSO newWeapon)
+    {
+        weaponSO = newWeapon;
+        WeaponSprite = weaponSO.sprite;
+        GetComponent<SpriteRenderer>().sprite = WeaponSprite;
+    }
+
     public void Shoot(Transform spawnTransform, Quaternion weaponRotation)
     {
+        if (weaponSO == null)
+        {
+            return;
+        }
+
         if (cooldownTimer > 0)
         {
             return;
@@ -79,6 +91,10 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
+        if (weaponSO == null)
+        {
+            return;
+        }
         WeaponSprite = weaponSO.sprite;
     }
 

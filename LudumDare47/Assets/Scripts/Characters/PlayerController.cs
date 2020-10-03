@@ -22,7 +22,11 @@ public class PlayerController : MonoBehaviour
 
     private float dodgeTimer;
     private float invTimer;
-    //8 11
+
+    public Weapon GetWeapon()
+    {
+        return weaponHandler.GetWeapon();
+    }
 
     private void Start()
     {

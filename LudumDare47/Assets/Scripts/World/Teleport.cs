@@ -19,6 +19,8 @@ public class Teleport : MonoBehaviour
             var camPos = Camera.main.transform.position;
             camPos.x = teleportTargetX;
             Camera.main.transform.position = camPos;
+
+            LevelHandler.Instance.IncrementLoop();
         }
     }
 }

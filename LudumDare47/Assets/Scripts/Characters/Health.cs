@@ -19,10 +19,24 @@ public class Health : MonoBehaviour
     [SerializeField] private float deathEffectLifetime;
     [SerializeField] private float invTimeAfterHit;
 
+    public delegate void HealthEventHandler(Health source);
+
+    public event HealthEventHandler OnHealthChanged;
+
     private float invTimer;
     private int defaultLayer;
 
     private int currentHealth;
+
+    public int GetMaxHealth()
+    {
+        return _maxHealth;
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
 
     private void Awake()
     {
@@ -67,6 +81,11 @@ public class Health : MonoBehaviour
         {
             invTimer = invTimeAfterHit;
             gameObject.layer = INV_LAYER;
+        }
+
+        if (OnHealthChanged != null)
+        {
+            OnHealthChanged.Invoke(this);
         }
     }
 

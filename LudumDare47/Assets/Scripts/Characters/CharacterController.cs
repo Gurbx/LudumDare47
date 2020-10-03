@@ -115,7 +115,11 @@ public class CharacterController : MonoBehaviour
             rollTimer = 0.4f;
 
             isDodgeUsed = true;
-            CharacterRolled.Invoke(this);
+
+            if (CharacterRolled != null)
+            {
+                CharacterRolled.Invoke(this);
+            }
         }
         //animator.SetBool("isIdle", !(isGrounded && Mathf.Abs(move) > 0));
     }
