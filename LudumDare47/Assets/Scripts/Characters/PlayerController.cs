@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             weaponHandler.Shoot();
-
+            CameraHandler.ScreenShake(0.1f, 0.05f, 1f);
         }
     }
 

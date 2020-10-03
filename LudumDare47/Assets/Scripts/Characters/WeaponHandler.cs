@@ -39,6 +39,11 @@ public class WeaponHandler : MonoBehaviour
 
     private void Update()
     {
+        if (target == null && targetPlayer)
+        {
+            return;
+        }
+
         if (!ShouldAim)
         {
             return;
@@ -70,7 +75,9 @@ public class WeaponHandler : MonoBehaviour
 
     private void Flip()
     {
-        transform.localPosition *= -1;
+        var pos = transform.localPosition;
+        pos.x *= -1;
+        transform.localPosition = pos;
         spriteRenderer.flipY = IsFacingRight;
         IsFacingRight = !IsFacingRight;
     }

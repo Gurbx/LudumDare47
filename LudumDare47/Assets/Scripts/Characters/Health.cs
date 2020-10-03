@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] private float deathSlowdown;
+    [SerializeField] private float slowFadeIn, slowFadeOut;
     [SerializeField] private int _maxHealth;
     [SerializeField] private UnityEvent deathEvent;
     [SerializeField] private UnityEvent hitEvent;
@@ -45,6 +47,7 @@ public class Health : MonoBehaviour
 
     private void HitEffect()
     {
+        CameraHandler.ScreenShake(0.2f, 0.1f, 1f);
         if (hitEffect == null)
         {
             return;
@@ -56,6 +59,8 @@ public class Health : MonoBehaviour
 
     private void DeathEffect()
     {
+        SlowMotion.SlowTime(deathSlowdown, slowFadeIn, slowFadeOut);
+        CameraHandler.ScreenShake(0.7f, 0.3f, 1f);
         if (deathEffect == null)
         {
             return;

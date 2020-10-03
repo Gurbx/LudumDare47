@@ -27,6 +27,11 @@ public class EnemyShootAI : MonoBehaviour
 
     private void Update()
     {
+        if (player == null)
+        {
+            return;
+        }
+
         if (isPlayerVisible)
         {
             Debug.DrawRay(transform.position, playerDirection.normalized * viewRange, Color.green);
