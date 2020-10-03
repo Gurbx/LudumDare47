@@ -14,7 +14,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float invTime;
     [SerializeField] private float dodgeCooldown;
 
-    [SerializeField] private SpriteRenderer debugRendere;
+    [SerializeField] private Animator animator;
+    [SerializeField] private ParticleSystem dodgeEffect;
+
+    //[SerializeField] private SpriteRenderer debugRendere;
 
     private bool shouldJump = false;
     private bool shouldDodge = false;
@@ -62,7 +65,7 @@ public class PlayerController : MonoBehaviour
             if (invTimer <= 0)
             {
                 gameObject.layer = PLAYER_LAYER;
-                debugRendere.color = Color.green;
+                //debugRendere.color = Color.green;
             }
         }
 
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour
             dodgeTimer -= Time.deltaTime;
             if (dodgeTimer <= 0)
             {
-                debugRendere.color = Color.white;
+                //debugRendere.color = Color.white;
             }
         }
     }
@@ -81,8 +84,9 @@ public class PlayerController : MonoBehaviour
         gameObject.layer = INV_LAYER;
         invTimer = invTime;
         dodgeTimer = dodgeCooldown;
-        debugRendere.color = Color.blue;
         SlowMotion.SlowTime(0.3f, 0.2f, 0.6f);
+        animator.SetTrigger("Dodge");
+        dodgeEffect.Play();
     }
 
     private void FixedUpdate()
