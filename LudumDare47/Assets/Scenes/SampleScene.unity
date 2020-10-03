@@ -10764,6 +10764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1444e7f7072dc6a4ab9b04bd1889dfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rollForce: 400
   jumpForcce: 900
   rigidBody: {fileID: 723760573}
   OnLandEvent:
@@ -11679,6 +11680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1444e7f7072dc6a4ab9b04bd1889dfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rollForce: 500
   jumpForcce: 1000
   rigidBody: {fileID: 1442254849}
   OnLandEvent:
@@ -11707,6 +11709,9 @@ MonoBehaviour:
   charController: {fileID: 1442254852}
   weaponHandler: {fileID: 2046872079}
   movmentSpeed: 1
+  invTime: 0.4
+  dodgeCooldown: 0.8
+  debugRendere: {fileID: 1740846515}
 --- !u!114 &1442254854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12023,6 +12028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1444e7f7072dc6a4ab9b04bd1889dfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rollForce: 400
   jumpForcce: 900
   rigidBody: {fileID: 1851991710}
   OnLandEvent:

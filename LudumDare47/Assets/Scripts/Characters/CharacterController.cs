@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class CharacterController : MonoBehaviour
 {
+    [SerializeField] private float rollForce = 400f;
     [SerializeField] private float jumpForcce = 400f;
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private UnityEvent OnLandEvent;
@@ -17,6 +18,11 @@ public class CharacterController : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
     private float jumpTimer;
+    private float rollTimer;
+
+    public delegate void CharacterControllerEventHandler(CharacterController source);
+
+    public event CharacterControllerEventHandler CharacterRolled;
 
     public bool IsFacingRight { get; private set; }
     public bool IsGrounded { get; private set; }
@@ -51,8 +57,13 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void Move(float move, bool jump)
+    public void Move(float move, bool jump, bool roll)
     {
+        if (rollTimer > 0)
+        {
+            return;
+        }
+
         if (IsGrounded || hasAirControl)
         {
             Vector3 targetVelocity = new Vector2(move * 10f, rigidBody.velocity.y);
@@ -90,6 +101,14 @@ public class CharacterController : MonoBehaviour
             // jumpSound.Play();
         }
 
+        if (roll && rigidBody.velocity.magnitude > 0.5f)
+        {
+            float direction = (IsFacingRight) ? 1f : -1f;
+            rigidBody.AddForce(new Vector2(rollForce * direction, jumpForcce*0.5f));
+            rollTimer = 0.4f;
+
+            CharacterRolled.Invoke(this);
+        }
         //animator.SetBool("isIdle", !(isGrounded && Mathf.Abs(move) > 0));
     }
 
@@ -119,5 +138,6 @@ public class CharacterController : MonoBehaviour
     private void Update()
     {
         jumpTimer -= Time.deltaTime;
+        rollTimer -= Time.deltaTime;
     }
 }
