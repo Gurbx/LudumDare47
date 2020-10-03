@@ -10,12 +10,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected bool isPlayerWeapon;
     [SerializeField] WeaponSO weaponSO;
 
-    //protected float spread;
-    //protected int damage;
-    //protected float minSpeed;
-    //protected float maxSpeed;
-    //protected float shootingCooldown;
-
     private WeaponType type;
 
     private float cooldownTimer;
@@ -28,7 +22,7 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
-        cooldownTimer = weaponSO.shootingCooldown;
+        cooldownTimer = Random.Range(weaponSO.minCooldown, weaponSO.maxCooldown);
 
         switch (type)
         {
@@ -40,7 +34,6 @@ public class Weapon : MonoBehaviour
             default:
                 ShootBullet(spawnTransform, weaponRotation);
                 break;
-
         }
     }
 
@@ -63,7 +56,7 @@ public class Weapon : MonoBehaviour
 
             bullet.transform.localScale = weaponSO.projectileScale;
 
-            Destroy(bullet, 10f);
+            Destroy(bullet, 30f);
         }
     }
 

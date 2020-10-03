@@ -20,10 +20,10 @@ public class PlayerController : MonoBehaviour
         {
             shouldJump = true;
         }
-
         if (Input.GetMouseButton(0))
         {
             weaponHandler.Shoot();
+
         }
     }
 

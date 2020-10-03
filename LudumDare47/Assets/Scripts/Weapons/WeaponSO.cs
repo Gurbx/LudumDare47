@@ -11,7 +11,8 @@ public class WeaponSO : ScriptableObject
     public float spread;
     public float minSpeed;
     public float maxSpeed;
-    public float shootingCooldown;
+    public float minCooldown;
+    public float maxCooldown;
     public int minNrProjectiles = 1;
     public int maxNrProjectiles = 1;
     public Vector3 projectileScale = Vector3.one;

@@ -10,7 +10,6 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private UnityEvent OnLandEvent;
     [SerializeField] private float verticalRayLength = 0.55f;
     [SerializeField] private float horizontalRayLength = 0.55f;
-    //[SerializeField] private Vector2 wallCheckSize;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private bool hasAirControl;
     [Range(0, .3f)] [SerializeField] private float movmentSmoothing = .05f;
@@ -50,16 +49,6 @@ public class CharacterController : MonoBehaviour
                 break;
             }
         }
-
-        //var hit = Physics2D.Raycast(transform.position, Vector2.down, verticalRayLength, groundLayer);
-        //if (hit.collider != null)
-        //{
-        //    // bounce.SetTrigger("bounce");
-        //    IsGrounded = true;
-        //    OnLandEvent.Invoke();
-        //}
-
-        //animator.SetBool("grounded", IsGrounded);
     }
 
     public void Move(float move, bool jump)

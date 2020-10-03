@@ -14,6 +14,7 @@ public class WeaponHandler : MonoBehaviour
     private Vector2 shootingDirection;
 
     public bool IsFacingRight { get; private set; }
+    public bool ShouldAim { get; set; }
 
     public void Shoot()
     {
@@ -23,6 +24,7 @@ public class WeaponHandler : MonoBehaviour
     private void Awake()
     {
         IsFacingRight = true;
+        ShouldAim = true;
     }
 
     private void Start()
@@ -37,6 +39,11 @@ public class WeaponHandler : MonoBehaviour
 
     private void Update()
     {
+        if (!ShouldAim)
+        {
+            return;
+        }
+
         if (targetMouse)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
