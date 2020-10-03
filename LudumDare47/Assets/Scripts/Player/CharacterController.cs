@@ -14,6 +14,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private bool hasAirControl;
     [Range(0, .3f)] [SerializeField] private float movmentSmoothing = .05f;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private Vector3 velocity = Vector3.zero;
     private float jumpTimer;
@@ -123,9 +124,7 @@ public class CharacterController : MonoBehaviour
     private void Flip()
     {
         IsFacingRight = !IsFacingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        spriteRenderer.flipX = IsFacingRight;
     }
 
     private void Update()

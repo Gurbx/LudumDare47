@@ -22,5 +22,4 @@ public class PlayerMovement : MonoBehaviour
         charController.Move(horizontalMove, shouldJump);
         shouldJump = false;
     }
-
 }
