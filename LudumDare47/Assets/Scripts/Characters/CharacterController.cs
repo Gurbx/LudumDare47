@@ -15,6 +15,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private bool hasAirControl;
     [Range(0, .3f)] [SerializeField] private float movmentSmoothing = .05f;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Animator animator;
 
     private Vector3 velocity = Vector3.zero;
     private float jumpTimer;
@@ -122,6 +123,8 @@ public class CharacterController : MonoBehaviour
             }
         }
         //animator.SetBool("isIdle", !(isGrounded && Mathf.Abs(move) > 0));
+
+        animator.SetBool("IsIdle", !(IsGrounded && Mathf.Abs(move) > 0));
     }
 
     private bool IsDirectionBlocked()
@@ -144,12 +147,14 @@ public class CharacterController : MonoBehaviour
     private void Flip()
     {
         IsFacingRight = !IsFacingRight;
-        spriteRenderer.flipX = IsFacingRight;
+        //spriteRenderer.flipX = !IsFacingRight;
     }
 
     private void Update()
     {
         jumpTimer -= Time.deltaTime;
         rollTimer -= Time.deltaTime;
+
+        animator.SetBool("IsGrounded", IsGrounded);
     }
 }

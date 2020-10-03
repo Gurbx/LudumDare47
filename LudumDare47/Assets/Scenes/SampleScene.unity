@@ -21706,14 +21706,15 @@ MonoBehaviour:
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
-  verticalRayLength: 0.51
-  horizontalRayLength: 0.51
+  verticalRayLength: 0.71
+  horizontalRayLength: 0.61
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
   hasAirControl: 1
   movmentSmoothing: 0.05
   spriteRenderer: {fileID: 1740846515}
+  animator: {fileID: 141740240}
 --- !u!114 &1442254853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22806,7 +22807,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0f2e18532b00cee4eba8f564c183254b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -22836,6 +22837,7 @@ MonoBehaviour:
   targetPlayer: 0
   target: {fileID: 0}
   shootOrigin: {fileID: 377787983}
+  characterSpriteRendere: {fileID: 1740846515}
 --- !u!114 &2046872080
 MonoBehaviour:
   m_ObjectHideFlags: 0

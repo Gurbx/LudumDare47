@@ -10,6 +10,7 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private bool targetPlayer;
     [SerializeField] private Transform target;
     [SerializeField] private Transform shootOrigin;
+    [SerializeField] private SpriteRenderer characterSpriteRendere;
     
     private Vector2 shootingDirection;
 
@@ -85,5 +86,6 @@ public class WeaponHandler : MonoBehaviour
         transform.localPosition = pos;
         spriteRenderer.flipY = IsFacingRight;
         IsFacingRight = !IsFacingRight;
+        characterSpriteRendere.flipX = !IsFacingRight;
     }
 }

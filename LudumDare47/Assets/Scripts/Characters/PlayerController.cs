@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             shouldJump = true;
-            Debug.Log("JUMP");
         }
 
         if (Input.GetMouseButton(0))
