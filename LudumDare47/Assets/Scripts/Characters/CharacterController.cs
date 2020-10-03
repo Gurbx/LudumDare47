@@ -19,6 +19,7 @@ public class CharacterController : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private float jumpTimer;
     private float rollTimer;
+    private bool isDodgeUsed; //Resets when hits ground;
 
     public delegate void CharacterControllerEventHandler(CharacterController source);
 
@@ -51,6 +52,7 @@ public class CharacterController : MonoBehaviour
             {
                 // bounce.SetTrigger("bounce");
                 IsGrounded = true;
+                isDodgeUsed = false;
                 OnLandEvent.Invoke();
                 break;
             }
@@ -101,12 +103,18 @@ public class CharacterController : MonoBehaviour
             // jumpSound.Play();
         }
 
-        if (roll && rigidBody.velocity.magnitude > 0.5f)
+        if (roll && rigidBody.velocity.magnitude > 0.5f && !isDodgeUsed)
         {
             float direction = (IsFacingRight) ? 1f : -1f;
+
+            var velocity = rigidBody.velocity;
+            velocity.y = 0;
+            rigidBody.velocity = velocity;
+
             rigidBody.AddForce(new Vector2(rollForce * direction, jumpForcce*0.5f));
             rollTimer = 0.4f;
 
+            isDodgeUsed = true;
             CharacterRolled.Invoke(this);
         }
         //animator.SetBool("isIdle", !(isGrounded && Mathf.Abs(move) > 0));

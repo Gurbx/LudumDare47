@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    private const int INV_LAYER = 12;
+
     [SerializeField] private float deathSlowdown;
     [SerializeField] private float slowFadeIn, slowFadeOut;
     [SerializeField] private int _maxHealth;
@@ -15,12 +17,29 @@ public class Health : MonoBehaviour
     [SerializeField] private GameObject deathEffect;
     [SerializeField] private float hitEffectLifetime;
     [SerializeField] private float deathEffectLifetime;
+    [SerializeField] private float invTimeAfterHit;
+
+    private float invTimer;
+    private int defaultLayer;
 
     private int currentHealth;
 
     private void Awake()
     {
         currentHealth = _maxHealth;
+        defaultLayer = gameObject.layer;
+    }
+
+    private void Update()
+    {
+        if (invTimer > 0)
+        {
+            invTimer -= Time.deltaTime;
+            if (invTimer <= 0)
+            {
+                gameObject.layer = defaultLayer;
+            }
+        }
     }
 
     public void Damage(int damage)
@@ -42,6 +61,12 @@ public class Health : MonoBehaviour
                 deathEvent.Invoke();
             }
             Destroy(gameObject);
+        }
+
+        if (invTimer > 0)
+        {
+            invTimer = invTimeAfterHit;
+            gameObject.layer = INV_LAYER;
         }
     }
 

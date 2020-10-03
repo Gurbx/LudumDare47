@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1444e7f7072dc6a4ab9b04bd1889dfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rollForce: 400
   jumpForcce: 900
   rigidBody: {fileID: 8269388816437018359}
   OnLandEvent:
@@ -254,7 +255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45b6db4a521c0949a5a108075b8e3a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 5
+  deathSlowdown: 0.2
+  slowFadeIn: 0.05
+  slowFadeOut: 0.05
+  _maxHealth: 2
   deathEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -267,6 +271,7 @@ MonoBehaviour:
     type: 3}
   hitEffectLifetime: 5
   deathEffectLifetime: 5
+  invTimeAfterHit: 0
 --- !u!114 &8269388816437018123
 MonoBehaviour:
   m_ObjectHideFlags: 0
