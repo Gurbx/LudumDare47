@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CharacterController charController;
+    [SerializeField] private WeaponHandler weaponHandler;
     [SerializeField] private float movmentSpeed;
 
     private bool shouldJump = false;
@@ -14,7 +15,16 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * movmentSpeed;
-        if (Input.GetButtonDown("Jump")) shouldJump = true;
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            shouldJump = true;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            weaponHandler.Shoot();
+        }
     }
 
     private void FixedUpdate()

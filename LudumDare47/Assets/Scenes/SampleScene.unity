@@ -4394,6 +4394,36 @@ Transform:
   m_Father: {fileID: 1221080512}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &377787982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 377787983}
+  m_Layer: 0
+  m_Name: Bullet Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &377787983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377787982}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.625, y: 0.098, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2046872077}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5047,6 +5077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charController: {fileID: 1442254852}
+  weaponHandler: {fileID: 2046872079}
   movmentSpeed: 1
 --- !u!1 &1634964814
 GameObject:
@@ -5092,10 +5123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a44786c7d2ef4a4fb5afe25727ae88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
   spriteRenderer: {fileID: 1634964817}
   targetMouse: 0
   targetPlayer: 1
   target: {fileID: 0}
+  shootOrigin: {fileID: 0}
 --- !u!212 &1634964817
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5246,7 +5279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1811564924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5367,6 +5400,7 @@ GameObject:
   - component: {fileID: 2046872077}
   - component: {fileID: 2046872078}
   - component: {fileID: 2046872079}
+  - component: {fileID: 2046872080}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -5384,7 +5418,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 377787983}
   m_Father: {fileID: 1442254851}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5450,10 +5485,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a44786c7d2ef4a4fb5afe25727ae88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 2046872080}
   spriteRenderer: {fileID: 2046872078}
   targetMouse: 1
   targetPlayer: 0
   target: {fileID: 0}
+  shootOrigin: {fileID: 377787983}
+--- !u!114 &2046872080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046872076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca4d6a0e6e04a945b14836f2a4012bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBullet: {fileID: 691567174550428652, guid: 7dd6f9f34fc009c47b704aa8052638b0,
+    type: 3}
+  enemyBullet: {fileID: 0}
+  isPlayerWeapon: 1
+  weaponSO: {fileID: 11400000, guid: c90988868dfb7f7408cd02bbf3282ea9, type: 2}
 --- !u!1 &2101716564
 GameObject:
   m_ObjectHideFlags: 0

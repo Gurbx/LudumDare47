@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class WeaponHandler : MonoBehaviour
 {
+    [SerializeField] private Weapon weapon;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private bool targetMouse;
     [SerializeField] private bool targetPlayer;
     [SerializeField] private Transform target;
+    [SerializeField] private Transform shootOrigin;
     
     private Vector2 shootingDirection;
 
     public bool IsFacingRight { get; private set; }
+
+    public void Shoot()
+    {
+        weapon.Shoot(shootOrigin, transform.rotation);
+    }
 
     private void Awake()
     {
@@ -24,9 +31,11 @@ public class Weapon : MonoBehaviour
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
+
+        spriteRenderer.sprite = weapon.WeaponSprite;
     }
 
-    void Update()
+    private void Update()
     {
         if (targetMouse)
         {
