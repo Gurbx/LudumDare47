@@ -7,6 +7,7 @@ public class TimerHandler : MonoBehaviour
 {
     [SerializeField] private Text timerText;
     [SerializeField] private int totalTime;
+    [SerializeField] private AudioSource music;
 
     private float timer;
 
@@ -20,6 +21,14 @@ public class TimerHandler : MonoBehaviour
 
     private void NewLoop()
     {
+        if (!TimerActive)
+        {
+            music.Play();
+        }
+        else
+        {
+            music.pitch += 0.1f;
+        }
         TimerActive = true;
     }
 

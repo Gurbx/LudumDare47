@@ -7,6 +7,7 @@ public class Teleport : MonoBehaviour
     [SerializeField] private float teleportTargetX;
     [SerializeField] private Transform teleportSpawn;
     [SerializeField] private GameObject visuals;
+    [SerializeField] private GameObject effectPrefab;
 
     private bool isActive;
 
@@ -29,12 +30,21 @@ public class Teleport : MonoBehaviour
         }
         if (collision.CompareTag("Player"))
         {
-            var playerGameObject = collision.gameObject;
-            playerGameObject.transform.position = teleportSpawn.position;
-            var camPos = Camera.main.transform.position;
             LevelHandler.Instance.IncrementLoop();
-            isActive = false;
-            visuals.SetActive(false);
+
+            if (LevelHandler.Instance.LoopNr < 5)
+            {
+                var playerGameObject = collision.gameObject;
+                playerGameObject.transform.position = teleportSpawn.position;
+                var camPos = Camera.main.transform.position;
+                isActive = false;
+                visuals.SetActive(false);
+
+                var effect = Instantiate(effectPrefab, teleportSpawn);
+                effect.transform.parent = null;
+                Destroy(effect, 7f);
+            }
+
         }
     }
 }
