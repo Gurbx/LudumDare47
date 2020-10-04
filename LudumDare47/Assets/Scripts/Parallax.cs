@@ -17,6 +17,8 @@ public class Parallax : MonoBehaviour
 
     void Update()
     {
+        if (playerTransform == null) return;
+
         pos.x = playerTransform.position.x * scrollSpeed;
         pos.y = transform.position.y * 0.05f + yOffset;
 

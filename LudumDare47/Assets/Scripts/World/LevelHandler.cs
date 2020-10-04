@@ -6,11 +6,15 @@ public class LevelHandler : MonoBehaviour
 {
     public static LevelHandler Instance;
 
+    public List<GameObject> crystalDisplay;
+
     public delegate void LevelHandlerEventHandler();
 
     public event LevelHandlerEventHandler LoopIncremented;
+   
 
     public int LoopNr { get; private set; }
+    public int Crystals { get; private set; }
 
     private void Awake()
     {
@@ -31,5 +35,32 @@ public class LevelHandler : MonoBehaviour
         {
             LoopIncremented.Invoke();
         }
+    }
+
+    public void IncrementCrystals()
+    {
+        Crystals++;
+        if (Crystals >= 5)
+        {
+            Win();
+        }
+
+        for (int i = 0; i < crystalDisplay.Count; i++)
+        {
+            if (i <= Crystals)
+            {
+                crystalDisplay[i].SetActive(true);
+            }
+        }
+    }
+
+    public void GameOver()
+    {
+
+    }
+
+    private void Win()
+    {
+
     }
 }
