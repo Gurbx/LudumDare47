@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float hitEffectLifetime;
     [SerializeField] private float deathEffectLifetime;
     [SerializeField] private float invTimeAfterHit;
+    [SerializeField] private ParticleSystem trail;
 
     public delegate void HealthEventHandler(Health source);
 
@@ -33,6 +34,22 @@ public class Health : MonoBehaviour
     public int GetMaxHealth()
     {
         return _maxHealth;
+    }
+
+    public void AddHealth(int amount)
+    {
+        if (currentHealth >= _maxHealth)
+        {
+            return;
+        }
+
+        currentHealth += amount;
+
+        if (OnHealthChanged != null)
+        {
+            OnHealthChanged.Invoke(this);
+        }
+
     }
 
     public int GetCurrentHealth()
@@ -115,10 +132,18 @@ public class Health : MonoBehaviour
         effect.transform.parent = null;
         Destroy(effect, deathEffectLifetime);
 
+        if (trail != null)
+        {
+            trail.transform.parent = null;
+            trail.Stop();
+            Destroy(trail, 10f);
+        }
+
         if (isGameOverOnDeath)
         {
             LevelHandler.Instance.GameOver();
         }
+
     }
 
 }

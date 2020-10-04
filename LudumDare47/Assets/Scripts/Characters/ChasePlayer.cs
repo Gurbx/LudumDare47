@@ -2,27 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShootAI : MonoBehaviour
+public class ChasePlayer : MonoBehaviour
 {
     private const float CHEK_COOLDOWN = 0.1f;
 
-    [SerializeField] private WeaponHandler weaponHandler;
-    [SerializeField] private float shootCooldown;
-    [SerializeField] private float shootCooldonwVariation;
+    //[SerializeField] private WeaponHandler weaponHandler;
+    //[SerializeField] private float shootCooldown;
+    //[SerializeField] private float shootCooldonwVariation;
     [SerializeField] private float viewRange;
     [SerializeField] private LayerMask lineOfSightLayerMask;
-
+    [SerializeField] private Rigidbody2D rbod;
+    [SerializeField] private float speed;
+ 
     private bool isPlayerVisible;
     private GameObject player;
     private float checkPlayerTimer;
     private float shootCooldownTimer;
     private Vector2 playerDirection;
 
-    private bool shouldShoot;
+    private bool shouldMove;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     private void Update()
@@ -42,32 +50,29 @@ public class EnemyShootAI : MonoBehaviour
         //}
 
         UpdateLineOfSightToPlayer();
-        HandleShooting();
+        if (isPlayerVisible)
+        {
+            shouldMove = true;
+        }
+        else
+        {
+            shouldMove = false;
+        }
+        //HandleShooting();
     }
 
-    private void HandleShooting()
+    private void FixedUpdate()
     {
-        if (shouldShoot)
-        {
-            weaponHandler.Shoot();
-            shouldShoot = false;
-        }
-
-        shootCooldownTimer -= Time.deltaTime;
-        if (shootCooldownTimer > 0)
+        if (player == null)
         {
             return;
         }
 
-        weaponHandler.ShouldAim = isPlayerVisible;
-        if (!isPlayerVisible)
+        if (shouldMove)
         {
-            return;
+            var direction = player.transform.position - transform.position;
+            rbod.velocity = direction.normalized * speed;
         }
-
-        shootCooldownTimer = shootCooldown + Random.Range(-shootCooldonwVariation, shootCooldonwVariation);
-
-        shouldShoot = true;
     }
 
     private void UpdateLineOfSightToPlayer()

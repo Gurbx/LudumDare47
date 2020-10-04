@@ -41,8 +41,14 @@ public class TimerHandler : MonoBehaviour
         }
 
         timer -= Time.deltaTime;
+        if (timer <= 60)
+        {
+            timerText.color = Color.red;
+        }
+
         if (timer <= 0)
         {
+            timer = 0;
             LevelHandler.Instance.GameOver();
         }
 

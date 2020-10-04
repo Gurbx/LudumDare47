@@ -15,10 +15,10 @@ MonoBehaviour:
   type: 0
   damage: 1
   spread: 10
-  minSpeed: 8
-  maxSpeed: 10
-  minCooldown: 0.5
-  maxCooldown: 1
+  minSpeed: 6
+  maxSpeed: 8
+  minCooldown: 0.75
+  maxCooldown: 1.25
   minNrProjectiles: 1
   maxNrProjectiles: 1
   projectileScale: {x: 1, y: 1, z: 1}

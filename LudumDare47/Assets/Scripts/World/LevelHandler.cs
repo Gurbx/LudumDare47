@@ -66,7 +66,7 @@ public class LevelHandler : MonoBehaviour
     public void GameOver()
     {
         sceneIndex = 1;
-        Invoke("ChangeScene", 3f);
+        Invoke("ChangeScene", 1.5f);
     }
 
     private void Win()
