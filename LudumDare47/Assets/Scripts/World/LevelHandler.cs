@@ -11,7 +11,7 @@ public class LevelHandler : MonoBehaviour
     public delegate void LevelHandlerEventHandler();
 
     public event LevelHandlerEventHandler LoopIncremented;
-   
+    public event LevelHandlerEventHandler CrystalCollected;
 
     public int LoopNr { get; private set; }
     public int Crystals { get; private set; }
@@ -44,10 +44,17 @@ public class LevelHandler : MonoBehaviour
         {
             Win();
         }
+        else
+        {
+            if (CrystalCollected != null)
+            {
+                CrystalCollected.Invoke();
+            }
+        }
 
         for (int i = 0; i < crystalDisplay.Count; i++)
         {
-            if (i <= Crystals)
+            if (i < Crystals)
             {
                 crystalDisplay[i].SetActive(true);
             }

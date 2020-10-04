@@ -41,6 +41,6 @@ public class TimerHandler : MonoBehaviour
 
     private void SetText()
     {
-        timerText.text = "Crystals " + LevelHandler.Instance.Crystals + "/5 \nPortal Closes in: " + (int)timer + "s"; 
+        timerText.text = "Crystals " + LevelHandler.Instance.Crystals + "/5 \nDimension Collapse in: " + (int)timer + "s"; 
     }
 }
