@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8289061361428171284}
   - component: {fileID: 8289061361428171287}
   - component: {fileID: 813816155}
-  m_Layer: 8
+  m_Layer: 1
   m_Name: crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.59375
+  m_Radius: 0.8
 --- !u!114 &813816155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d37b1777ec7a94e887ef9339ee3126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 2364939315915000089, guid: 6f7fe41ade6b9d24790458d40564a28d,
+    type: 3}
 --- !u!1 &8289061362506560707
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +142,7 @@ GameObject:
   - component: {fileID: 8289061362506560708}
   - component: {fileID: 8289061362506560710}
   - component: {fileID: 8289061362506560709}
-  m_Layer: 8
+  m_Layer: 1
   m_Name: Parametric Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +234,7 @@ GameObject:
   - component: {fileID: 8289061362787920202}
   - component: {fileID: 8289061362787920204}
   - component: {fileID: 8289061362787920203}
-  m_Layer: 8
+  m_Layer: 1
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

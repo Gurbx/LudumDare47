@@ -21,6 +21,8 @@ public class Health : MonoBehaviour
 
     public delegate void HealthEventHandler(Health source);
 
+    [SerializeField] private bool isGameOverOnDeath;
+
     public event HealthEventHandler OnHealthChanged;
 
     private float invTimer;
@@ -112,6 +114,11 @@ public class Health : MonoBehaviour
         var effect = Instantiate(deathEffect, transform.position, transform.rotation);
         effect.transform.parent = null;
         Destroy(effect, deathEffectLifetime);
+
+        if (isGameOverOnDeath)
+        {
+            LevelHandler.Instance.GameOver();
+        }
     }
 
 }

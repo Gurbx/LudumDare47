@@ -25,6 +25,7 @@ public class TimerHandler : MonoBehaviour
 
     void Update()
     {
+        LevelHandler.Instance.TimeLeft = (int)timer;
         if (!TimerActive)
         {
             return;
@@ -41,6 +42,13 @@ public class TimerHandler : MonoBehaviour
 
     private void SetText()
     {
-        timerText.text = "Crystals " + LevelHandler.Instance.Crystals + "/5 \nDimension Collapse in: " + (int)timer + "s"; 
+        if (LevelHandler.Instance.Crystals >= 5)
+        {
+            timerText.text = "GET TO THE PORTAL!\nDimension Collapse in: " + (int)timer + "s";
+        }
+        else
+        {
+            timerText.text = "Crystals " + LevelHandler.Instance.Crystals + "/5 \nDimension Collapse in: " + (int)timer + "s";
+        }
     }
 }

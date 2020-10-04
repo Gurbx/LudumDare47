@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelHandler : MonoBehaviour
 {
@@ -15,10 +16,11 @@ public class LevelHandler : MonoBehaviour
 
     public int LoopNr { get; private set; }
     public int Crystals { get; private set; }
+    public int TimeLeft { get; set; }
 
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
             GameObject.Destroy(this);
             return;
@@ -26,10 +28,17 @@ public class LevelHandler : MonoBehaviour
 
         Instance = this;
         LoopNr = 0;
+        Crystals = 0;
     }
 
     public void IncrementLoop()
     {
+        if (Crystals >= 5)
+        {
+            sceneIndex = 2;
+            ChangeScene();
+        }
+
         LoopNr++;
         if (LoopIncremented != null)
         {
@@ -40,16 +49,9 @@ public class LevelHandler : MonoBehaviour
     public void IncrementCrystals()
     {
         Crystals++;
-        if (Crystals >= 5)
+        if (CrystalCollected != null)
         {
-            Win();
-        }
-        else
-        {
-            if (CrystalCollected != null)
-            {
-                CrystalCollected.Invoke();
-            }
+            CrystalCollected.Invoke();
         }
 
         for (int i = 0; i < crystalDisplay.Count; i++)
@@ -63,11 +65,19 @@ public class LevelHandler : MonoBehaviour
 
     public void GameOver()
     {
-
+        sceneIndex = 1;
+        Invoke("ChangeScene", 3f);
     }
 
     private void Win()
     {
+        sceneIndex = 2;
+        Invoke("ChangeScene", 2f);
+    }
 
+    private int sceneIndex;
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene(sceneIndex);
     }
 }
