@@ -14553,7 +14553,7 @@ MonoBehaviour:
   deathSlowdown: 0.2
   slowFadeIn: 0.05
   slowFadeOut: 0.05
-  _maxHealth: 2
+  _maxHealth: 1
   deathEvent:
     m_PersistentCalls:
       m_Calls: []

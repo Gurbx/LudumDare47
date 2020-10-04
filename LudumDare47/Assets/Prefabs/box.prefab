@@ -153,11 +153,12 @@ MonoBehaviour:
   hitEvent:
     m_PersistentCalls:
       m_Calls: []
-  hitEffect: {fileID: 7180972484610100205, guid: 9003953d575598d49ac7afb46b11383d,
+  hitEffect: {fileID: 4193283686318372043, guid: f84d86260dbe858428f9837fe2a35400,
     type: 3}
-  deathEffect: {fileID: 7180972484610100205, guid: 9003953d575598d49ac7afb46b11383d,
+  deathEffect: {fileID: 4193283686318372043, guid: f84d86260dbe858428f9837fe2a35400,
     type: 3}
   hitEffectLifetime: 4
   deathEffectLifetime: 5
   invTimeAfterHit: 0
+  trail: {fileID: 0}
   isGameOverOnDeath: 0
