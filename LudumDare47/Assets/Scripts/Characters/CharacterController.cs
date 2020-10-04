@@ -16,6 +16,7 @@ public class CharacterController : MonoBehaviour
     [Range(0, .3f)] [SerializeField] private float movmentSmoothing = .05f;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource jumpSound;
 
     private Vector3 velocity = Vector3.zero;
     private float jumpTimer;
@@ -102,6 +103,7 @@ public class CharacterController : MonoBehaviour
 
             // jumpSound.pitch = Random.Range(1.1f, 1.5f);
             // jumpSound.Play();
+            JumpEffect();
         }
 
         if (roll && rigidBody.velocity.magnitude > 0.5f && !isDodgeUsed)
@@ -156,5 +158,15 @@ public class CharacterController : MonoBehaviour
         rollTimer -= Time.deltaTime;
 
         animator.SetBool("IsGrounded", IsGrounded);
+    }
+
+    private void JumpEffect()
+    {
+        if (jumpSound == null)
+        {
+            return;
+        }
+        jumpSound.pitch = Random.Range(1.1f, 1.3f);
+        jumpSound.Play();
     }
 }

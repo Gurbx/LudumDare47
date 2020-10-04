@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         SlowMotion.SlowTime(0.3f, 0.2f, 0.6f);
         animator.SetTrigger("Dodge");
         dodgeEffect.Play();
-        //dodgeSound.pitch = Random.Range(0.6f, 0.8f);
+        dodgeSound.pitch = Random.Range(0.9f, 1.1f);
         dodgeSound.Play();
     }
 
@@ -97,5 +97,6 @@ public class PlayerController : MonoBehaviour
         charController.Move(horizontalMove, shouldJump, shouldDodge);
         shouldJump = false;
         shouldDodge = false;
+
     }
 }
