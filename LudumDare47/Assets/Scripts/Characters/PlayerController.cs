@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] private ParticleSystem dodgeEffect;
+    [SerializeField] private AudioSource dodgeSound;
 
     //[SerializeField] private SpriteRenderer debugRendere;
 
@@ -87,6 +88,8 @@ public class PlayerController : MonoBehaviour
         SlowMotion.SlowTime(0.3f, 0.2f, 0.6f);
         animator.SetTrigger("Dodge");
         dodgeEffect.Play();
+        //dodgeSound.pitch = Random.Range(0.6f, 0.8f);
+        dodgeSound.Play();
     }
 
     private void FixedUpdate()
